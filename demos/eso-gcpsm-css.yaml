@@ -1,0 +1,14 @@
+apiVersion: external-secrets.io/v1
+kind: ClusterSecretStore
+metadata:
+  name: gcpsm
+spec:
+  provider:
+    gcpsm:
+      auth:
+        secretRef:
+          secretAccessKeySecretRef:
+            namespace: external-secrets
+            name: eso-provider-gcpsm-creds # The GCPSM secret name containing the SA key content
+            key: gcp-sa-key.json           # The K8S secret key name containing the SA key content
+      projectID: GCP_PROJECT_ID            # The GCP project ID

@@ -1,0 +1,16 @@
+apiVersion: external-secrets.io/v1
+kind: ExternalSecret
+metadata:
+  name: demo-dev
+  namespace: demo
+spec:
+  secretStoreRef:
+    name: gcpsm
+    kind: ClusterSecretStore
+  refreshInterval: "2m"
+  dataFrom:
+    - extract:
+        key: demo-dev # GCPSM secret name
+  target:
+    name: demo-dev    # K8S secret name to be created
+    creationPolicy: Owner
